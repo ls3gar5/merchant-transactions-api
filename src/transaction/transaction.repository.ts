@@ -18,8 +18,12 @@ export class TransactionRepository {
     }
 
     async getTransactions(): Promise<string[]> {
+      try {
         const response = await this.axiosInstance.get('/transactions');
         return response.data;
+      } catch (error) {
+        throw new Error('Service not working');
+      }
     }
 
     async getReceivables(): Promise<string[]> {
